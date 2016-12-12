@@ -166,11 +166,18 @@ public class InsideCircleView extends View {
     }
 
 
-    public void startAnimation(final PromptDialog.DialogType newDialog) {
+    public void changeViewType(final PromptDialog.DialogType newDialog, boolean mIsShowAnim) {
         Animation animIn = null;
         Animation animOut = null;
         if (newDialog == PromptDialog.DialogType.DIALOG_TYPE_SUCCESS) {
-            //hide tick
+            if (!mIsShowAnim){
+                mDialogType = newDialog;
+                populateConstants(mDialogType);
+                VOLATILE_LEFT_RECT = CONST_LEFT_RECT_W;
+                VOLATILE_RIGHT_RECT = CONST_RIGHT_RECT_W;
+                invalidate();
+                return;
+            }
 
             invalidate();
             animIn = new Animation() {

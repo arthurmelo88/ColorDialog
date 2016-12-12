@@ -167,6 +167,11 @@ public class PromptDialog extends Dialog implements View.OnClickListener {
         } else {
             mNegativeBtn.setText(mBtnNegativeText);
         }
+        setBtnBackground(mPositiveBtn, newDialogType);
+        mTitleTv.setText(mTitle);
+        mContentTv.setText(mContent);
+        mPositiveBtn.setText(mBtnPositiveText);
+        mNegativeBtn.setText(mBtnNegativeText);
         resizeDialog();
         if (!fromCreate) {
             playAnimation(newDialogType);
@@ -176,10 +181,12 @@ public class PromptDialog extends Dialog implements View.OnClickListener {
     private Animator animateRevealColorFromCoordinates(View viewRoot, @ColorRes int color, int x, int y, DialogType newDialogType) {
         final float finalRadius = (float) Math.hypot(viewRoot.getWidth(), viewRoot.getHeight());
         Animator anim = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            anim = ViewAnimationUtils.createCircularReveal(viewRoot, x, y, 0, finalRadius);
-            anim.setDuration(700);
-            anim.setInterpolator(new AnticipateOvershootInterpolator());
+        if (mIsShowAnim) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                anim = ViewAnimationUtils.createCircularReveal(viewRoot, x, y, 0, finalRadius);
+                anim.setDuration(700);
+                anim.setInterpolator(new AnticipateOvershootInterpolator());
+            }
         }
         if (viewRoot instanceof ImageView) {
             ((ImageView) viewRoot).setImageBitmap(createTriangel((int) (DisplayUtil.getScreenSize(getContext()).x * 0.7), DisplayUtil.dp2px(getContext(), 10), newDialogType));
@@ -190,19 +197,13 @@ public class PromptDialog extends Dialog implements View.OnClickListener {
     }
 
     private void playAnimation(DialogType newDialogType) {
-        setBtnBackground(mPositiveBtn, newDialogType);
-        mTitleTv.setText(mTitle);
-        mContentTv.setText(mContent);
-        mPositiveBtn.setText(mBtnPositiveText);
-        mNegativeBtn.setText(mBtnNegativeText);
-        mOutterCircle.setDialogType(newDialogType);
         CircleAndHeaderAnimation mCircleAndHeaderAnimation = new CircleAndHeaderAnimation(mOutterCircle);
         /*if (mDialogType == DialogType.DIALOG_TYPE_WRONG) {
-            mErrorFrame.startAnimation(mErrorInAnim);
-            mErrorX.startAnimation(mErrorXInAnim);
+            mErrorFrame.changeViewType(mErrorInAnim);
+            mErrorX.changeViewType(mErrorXInAnim);
         }*/
         if (mDialogType == DIALOG_TYPE_INFO) {
-            mInsideCircleV.startAnimation(newDialogType);
+            mInsideCircleV.changeViewType(newDialogType, mIsShowAnim);
         }
         Animator changeTriangleColor = animateRevealColorFromCoordinates(triangleIv, getColorResId(newDialogType), mHeaderFrame.getWidth() / 2, -mHeaderFrame.getHeight() / 2,
                                                                          newDialogType);
@@ -211,7 +212,11 @@ public class PromptDialog extends Dialog implements View.OnClickListener {
         mCircleAndHeaderAnimation.setHeaderObj(changeHeaderColor, mHeaderFrame);
         mCircleAndHeaderAnimation.setTriangleObj(changeTriangleColor, triangleIv);
         mCircleAndHeaderAnimation.setAnimationListener(mCircleAndHeaderAnimation);
-        mOutterCircle.startAnimation(mCircleAndHeaderAnimation);
+        if (mIsShowAnim) mOutterCircle.startAnimation(mCircleAndHeaderAnimation);
+        else {
+            mHeaderFrame.setVisibility(View.VISIBLE);
+            triangleIv.setVisibility(View.VISIBLE);
+        }
     }
 
     private void resizeDialog() {

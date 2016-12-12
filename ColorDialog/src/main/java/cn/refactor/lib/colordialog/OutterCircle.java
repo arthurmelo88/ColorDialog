@@ -17,7 +17,6 @@ import cn.refactor.lib.colordialog.util.ArcUtils;
 public class OutterCircle extends View {
 
     public static float mStrokeDP;
-    public PromptDialog.DialogType dialogType;
     private Paint mPaintCircle;
     private Paint mPaintPoint;
     private int mWidth;
@@ -46,14 +45,6 @@ public class OutterCircle extends View {
         mHeight = ta.getDimensionPixelSize(3, ViewGroup.LayoutParams.MATCH_PARENT);
         ta.recycle();*/
         init();
-    }
-
-    public PromptDialog.DialogType getDialogType() {
-        return dialogType;
-    }
-
-    public void setDialogType(PromptDialog.DialogType dialogType) {
-        this.dialogType = dialogType;
     }
 
     public Paint getmPaintPoint() {
