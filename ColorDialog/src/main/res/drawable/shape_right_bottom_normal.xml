@@ -7,6 +7,6 @@
         android:topLeftRadius="0dp"
         android:topRightRadius="0dp"
         android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="6dp"/>
+        android:bottomRightRadius="3dp"/>
 
 </shape>

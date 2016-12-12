@@ -15,7 +15,6 @@ import android.view.animation.ScaleAnimation;
 public class AnimationLoader {
     public static AnimationSet getInAnimation(Context context) {
         AnimationSet in = new AnimationSet(context, null);
-
         AlphaAnimation alpha = new AlphaAnimation(0.0f, 1.0f);
         alpha.setDuration(90);
 

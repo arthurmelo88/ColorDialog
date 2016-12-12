@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EOAttrs">
+        <attr name="eo_icontype" format="enum">
+            <enum name="DIALOG_TYPE_INFO" value="0"/>
+            <enum name="DIALOG_TYPE_HELP" value="1"/>
+            <enum name="DIALOG_TYPE_WRONG" value="2"/>
+            <enum name="DIALOG_TYPE_SUCCESS" value="3"/>
+            <enum name="DIALOG_TYPE_WARNING" value="4"/>
+        </attr>
+    </declare-styleable>
+</resources>

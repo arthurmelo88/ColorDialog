@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:wheel="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/loading"
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/loading"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llTop"
+
+    <FrameLayout
+        android:id="@+id/icon_frame"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="60sp"
+        android:layout_marginTop="2sp"
+        android:background="@android:color/darker_gray"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:id="@+id/header_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <cn.refactor.lib.colordialog.OutterCircle
+            android:id="@+id/outterCircle"
+            android:layout_marginTop="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
-        <ImageView
-            android:id="@+id/logoIv"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:layout_gravity="center" />
+        <cn.refactor.lib.colordialog.InsideCircleView
+            android:id="@+id/InsideCircleView"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5sp"
+            android:layout_height="match_parent"
+            app:eo_icontype="DIALOG_TYPE_INFO"/>
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:orientation="vertical"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
+        android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="vertical">
+        android:paddingRight="10dp">
+
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
             android:singleLine="true"
             android:textColor="@color/color_dialog_title"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvContent"
@@ -62,9 +76,9 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="1dp"
             android:textColor="@color/color_dialog_content_prompt"
-            android:visibility="visible" />
+            android:visibility="visible"/>
     </LinearLayout>
 
 
@@ -72,48 +86,37 @@
         android:id="@+id/llBtnGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-2sp"
         android:background="@android:color/white"
-        android:padding="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/btnPositive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="OK"
-            android:minHeight="40dp"
-            android:textColor="#676767" />
-
-
-        <!--<LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="1px"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:background="#929292" />
-        </LinearLayout>
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/btnNegative"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/sel_def_gray_right"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:clickable="true"
             android:gravity="center"
             android:minHeight="40dp"
-            android:textColor="#676767" /> -->
+            android:text="cancel"
+            android:textColor="#676767"/>
+
+        <TextView
+            android:id="@+id/btnPositive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="OK"
+            android:textColor="#676767"/>
 
     </LinearLayout>
 
